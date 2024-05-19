@@ -3,7 +3,7 @@ buildscript {
     ext {
 
         agp_version2 =
-        agp_version = '7.3.0'
+                agp_version = '7.3.0'
         agp_version1 = agp_version
     }
     ext.kotlin_version = "1.6.10"
