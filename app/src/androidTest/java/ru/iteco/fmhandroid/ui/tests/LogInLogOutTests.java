@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
-import ru.iteco.fmhandroid.ui.pageobjects.LogIn;
 import ru.iteco.fmhandroid.ui.steps.LogOutSteps;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
 
@@ -34,7 +33,6 @@ public class LogInLogOutTests {
 
     }
 
-    LogIn logIn = new LogIn();
     LoginSteps loginSteps = new LoginSteps();
     LogOutSteps logOutSteps = new LogOutSteps();
 

@@ -39,6 +39,6 @@ public class LoginSteps {
         }
 
 
-
-
+    public void logIn(String login2, String password2) {
+    }
 }
