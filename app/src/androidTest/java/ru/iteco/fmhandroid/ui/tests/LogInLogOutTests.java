@@ -18,11 +18,7 @@ import ru.iteco.fmhandroid.ui.steps.LoginSteps;
 @RunWith(AndroidJUnit4.class)
 public class LogInLogOutTests {
 
-    String LOGIN = "login2";
-    String PASSWORD = "password2";
 
-    String LOGIN2 = "login3";
-    String PASSWORD2 = "password3";
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -32,19 +28,24 @@ public class LogInLogOutTests {
         Thread.sleep(5000);
 
     }
+    String LOGIN = "login2";
+    String PASSWORD = "password2";
+
+    String LOGIN2 = "login3";
+    String PASSWORD2 = "password3";
 
     LoginSteps loginSteps = new LoginSteps();
     LogOutSteps logOutSteps = new LogOutSteps();
 
     @Test
     public void logInWithValidDataTest() {
-        loginSteps.validLogin();
+        loginSteps.validLogin(LOGIN, PASSWORD);
 
     }
 
     @Test
     public void logInWithNotValidDataTest() {
-        loginSteps.invalidLogin();
+        loginSteps.invalidLogin(LOGIN2, PASSWORD2);
 
     }
 
@@ -56,7 +57,7 @@ public class LogInLogOutTests {
 
     @Test
     public void logOutTest() {
-        loginSteps.validLogin();
+        loginSteps.validLogin(LOGIN, PASSWORD);
         logOutSteps.logOut();
 
 

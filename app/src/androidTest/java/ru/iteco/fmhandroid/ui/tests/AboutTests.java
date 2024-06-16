@@ -1,6 +1,9 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 
+import static android.provider.Telephony.Carriers.PASSWORD;
+import static com.google.firebase.analytics.FirebaseAnalytics.Event.LOGIN;
+
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -27,41 +30,40 @@ public class AboutTests {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void logIn () throws InterruptedException {
+    public void login () throws InterruptedException {
         Thread.sleep(9000);
         try {
-            loginSteps.validLogin();
+            loginSteps.validLogin(LOGIN, PASSWORD);
         } catch (NoMatchingViewException e) {
             return;
         }
-        loginSteps.logIn("login2", "password2");
+        loginSteps.validLogin(LOGIN, PASSWORD);
     }
 
     AboutSteps aboutSteps = new AboutSteps();
     LoginSteps loginSteps = new LoginSteps();
     @Test
     public void displayAboutSectionTest() {
-        AboutSteps.goToAboutSection();
+        aboutSteps.goToAboutSection();
         aboutSteps.displayAboutSection();
 
     }
 
     @Test
     public void goToPrivacyPolicyTest() {
-        AboutSteps.goToAboutSection();
-        AboutSteps.linkToPrivacyPolicy();
+        aboutSteps.goToAboutSection();
+        aboutSteps.linkToPrivacyPolicy();
     }
 
     @Test
     public void goToTermsOfUseTest() {
-        AboutSteps.goToAboutSection();
-        AboutSteps.linkToTermsOfUse();
+        aboutSteps.goToAboutSection();
+        aboutSteps.linkToTermsOfUse();
     }
 
     @Test
     public void backToNewsTest() {
-        AboutSteps.goToAboutSection();
-        AboutSteps.backToNews();
+        aboutSteps.goToAboutSection();
+        aboutSteps.backToNews();
     }
 }
-

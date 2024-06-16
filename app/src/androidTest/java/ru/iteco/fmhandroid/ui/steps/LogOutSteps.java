@@ -11,7 +11,7 @@ import androidx.test.espresso.ViewAssertion;
 import io.qameta.allure.kotlin.Allure;
 
 public class LogOutSteps {
-    public void logOut() {
+    public static void logOut() {
         Allure.step("Выход из учетной записи");
         AuthImage.perform(click());
         LogOutButton.perform(click());

@@ -24,7 +24,7 @@ public class AboutSteps {
         versionInfo.check(matches(isDisplayed()));
 
     }
-    public void displayAboutSection () {
+    public static void displayAboutSection () {
         Allure.step("Отображение страницы About с ссылками на Privacy Policy и Terms of use");
         versionInfo.check(matches(isDisplayed()));
         privacyPolicyLink.check(matches(isDisplayed()));

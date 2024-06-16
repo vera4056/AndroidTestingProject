@@ -1,5 +1,8 @@
 package ru.iteco.fmhandroid.ui.tests;
 
+import static android.provider.Telephony.Carriers.PASSWORD;
+import static com.google.firebase.analytics.FirebaseAnalytics.Event.LOGIN;
+
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
@@ -17,14 +20,14 @@ public class NewsTest {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void logIn () throws InterruptedException {
+    public void login () throws InterruptedException {
         Thread.sleep(9000);
         try {
-            loginSteps.validLogin();
+            loginSteps.validLogin(LOGIN, PASSWORD);
         } catch (NoMatchingViewException e) {
             return;
         }
-        loginSteps.logIn("login2", "password2");
+        loginSteps.validLogin(LOGIN, PASSWORD);
     }
     LoginSteps loginSteps = new LoginSteps();
     NewsSteps newsSteps = new NewsSteps();
@@ -47,4 +50,6 @@ public class NewsTest {
         newsSteps.deleteNews();
 
     }
+
+
 }
