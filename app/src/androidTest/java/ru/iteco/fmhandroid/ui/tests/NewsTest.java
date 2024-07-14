@@ -1,55 +1,72 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import static android.provider.Telephony.Carriers.PASSWORD;
-import static com.google.firebase.analytics.FirebaseAnalytics.Event.LOGIN;
-
-import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;
-
+@LargeTest
+@RunWith(AndroidJUnit4.class)
 public class NewsTest {
+    LoginSteps loginSteps = new LoginSteps();
+    NewsSteps newsSteps = new NewsSteps();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void login () throws InterruptedException {
-        Thread.sleep(9000);
-        try {
-            loginSteps.validLogin(LOGIN, PASSWORD);
-        } catch (NoMatchingViewException e) {
-            return;
-        }
-        loginSteps.validLogin(LOGIN, PASSWORD);
+    public void newsScreenLoad()  {
+        newsSteps.newsListLoad();
     }
-    LoginSteps loginSteps = new LoginSteps();
-    NewsSteps newsSteps = new NewsSteps();
 
     @Test
-    public void newsTextIsVisible() {
-        newsSteps.checkNews();
+    public void newsTextIsVisibleTest() {
+        newsSteps.checkTextInNews();
 
     }
 
     @Test
-    public void createNews() {
-        newsSteps.openCreateNewsForm();
-        newsSteps.createNewsWithValidData();
+    public void openNewsCreateFormTest() {
+        newsSteps.checkCreateNewsForm();
 
     }
 
     @Test
-    public void deleteNews() {
-        newsSteps.deleteNews();
+    public void createNewsTest() {
+        newsSteps.creatingNews();
 
     }
 
+    @Test
+    public void deleteNewsTest() {
+        newsSteps.deletingNews();
 
+    }
+
+    @Test
+    public void fillCategoryInNewsTest() {
+        newsSteps.newsCategory();
+
+    }
+
+    @Test
+    public void fillNewsTitleTest() {
+        newsSteps.newsTitle();
+    }
+    @Test
+    public void fillNewsDateTest() {
+        newsSteps.newsDate();
+    }
+
+    @Test
+    public void fillNewsTimeTest() {
+        newsSteps.newsTime();
+    }
 }

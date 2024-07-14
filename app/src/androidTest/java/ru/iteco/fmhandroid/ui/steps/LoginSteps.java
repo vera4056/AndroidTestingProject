@@ -1,52 +1,57 @@
 package ru.iteco.fmhandroid.ui.steps;
 
 
-import static android.provider.Telephony.Carriers.PASSWORD;
-import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static com.google.firebase.analytics.FirebaseAnalytics.Event.LOGIN;
-import static ru.iteco.fmhandroid.ui.pageobjects.LogIn.loginText;
-import static ru.iteco.fmhandroid.ui.pageobjects.LogIn.passwordText;
-import static ru.iteco.fmhandroid.ui.pageobjects.LogIn.signButton;
-import static ru.iteco.fmhandroid.ui.pageobjects.LogIn.textView;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-import androidx.test.espresso.ViewAssertion;
+import static ru.iteco.fmhandroid.ui.latency.ViewMatcherLatency.waitDisplayed;
 
 import io.qameta.allure.kotlin.Allure;
+import ru.iteco.fmhandroid.ui.latency.ViewMatcherLatency;
 import ru.iteco.fmhandroid.ui.pageobjects.LogIn;
 
+
 public class LoginSteps {
-    public static void isLogIn() {
+
+
+    LogIn logIn = new LogIn();
+    ViewMatcherLatency viewMatcherLatency = new ViewMatcherLatency();
+
+    public void shouldWaitLoadLoginFieldID() {
+        Allure.step("Загрузка страницы авторизации");
+        onView(isRoot()).perform(waitDisplayed(logIn.loginFieldId, 7000));
+
+    }
+
+    public void isLogIn() {
         Allure.step("Проверка наличия данных авторизации");
-        LogIn.loginText.check(matches(isDisplayed()));
+        onView(withId(logIn.loginFieldId)).check(matches(isDisplayed()));
 
     }
 
-    public static void validLogin(String login, String password) {
+    public void validLogin(String LOGIN, String PASSWORD) {
         Allure.step("Авторизация с валидными данными");
-        loginText.perform(replaceText(LOGIN));
-        passwordText.perform(replaceText(PASSWORD));
-        signButton.perform(click());
-        textView.check((ViewAssertion)withText("News"));
+        logIn.fillValidLoginPassword(LOGIN, PASSWORD);
+        logIn.viewMainButton();
+
     }
 
-    public static void invalidLogin(String LOGIN2, String PASSWORD2) {
+
+    public void invalidLoginOrPassword(String LOGIN2, String PASSWORD2) {
         Allure.step("Авторизация с невалидными данными");
-        loginText.perform(replaceText(LOGIN2));
-        passwordText.perform(replaceText(PASSWORD2));
-        signButton.perform(click());
-        textView.check((ViewAssertion)withText("Wrong login or password"));
+        logIn.fillUnValidLoginPassword(LOGIN2, PASSWORD2);
+
+
     }
 
-    public static void emptyLoginData() {
+    public void emptyLoginData() {
         Allure.step("Авторизация с пустым полем логин и паролем");
-        loginText.perform(replaceText(""));
-        passwordText.perform(replaceText(""));
-        textView.check((ViewAssertion)withText("Login and password cannot be empty"));
+        logIn.emptyLoginPassword();
     }
+
 
 
 }

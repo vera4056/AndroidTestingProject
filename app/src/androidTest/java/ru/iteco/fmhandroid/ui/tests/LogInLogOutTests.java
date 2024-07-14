@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LogOutSteps;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
+import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -24,8 +25,8 @@ public class LogInLogOutTests {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void sleep() throws InterruptedException {
-        Thread.sleep(5000);
+    public void waitForLoginFieldId ()  {
+        loginSteps.shouldWaitLoadLoginFieldID();
 
     }
     String LOGIN = "login2";
@@ -36,6 +37,13 @@ public class LogInLogOutTests {
 
     LoginSteps loginSteps = new LoginSteps();
     LogOutSteps logOutSteps = new LogOutSteps();
+    MainMenuSteps mainMenuSteps = new MainMenuSteps();
+
+    @Test
+    public void authorizationPageIsVisibleTest() {
+
+        loginSteps.isLogIn();
+    }
 
     @Test
     public void logInWithValidDataTest() {
@@ -44,8 +52,8 @@ public class LogInLogOutTests {
     }
 
     @Test
-    public void logInWithNotValidDataTest() {
-        loginSteps.invalidLogin(LOGIN2, PASSWORD2);
+    public void logInWithUnValidDataTest() {
+        loginSteps.invalidLoginOrPassword(LOGIN2, PASSWORD2);
 
     }
 
