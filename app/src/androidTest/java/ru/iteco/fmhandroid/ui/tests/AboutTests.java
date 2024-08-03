@@ -13,14 +13,15 @@ import org.junit.runner.RunWith;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.AboutSteps;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
+import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 
 public class AboutTests {
-
     LoginSteps loginSteps = new LoginSteps();
     AboutSteps aboutSteps = new AboutSteps();
+    MainMenuSteps mainMenuSteps = new MainMenuSteps();
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -28,10 +29,15 @@ public class AboutTests {
 
     @Before
     public void waitAboutLoad ()  {
-        aboutSteps.checkScreenElementsAbout();
+        aboutSteps.checkAppDeveloper();
+        try {
+            mainMenuSteps.mainScreenLoad();
+        } catch (Exception e) {
+            loginSteps.validLogin();
+            mainMenuSteps.mainScreenLoad();
+        }
 
     }
-
     @Test
     public void openAboutSectionTest() {
         aboutSteps.goToAboutSection();

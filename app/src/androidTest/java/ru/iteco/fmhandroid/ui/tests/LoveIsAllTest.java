@@ -12,21 +12,29 @@ import org.junit.runner.RunWith;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
 import ru.iteco.fmhandroid.ui.steps.LoveIsAllSteps;
+import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LoveIsAllTest {
-    LoginSteps loginSteps = new LoginSteps();
+
     LoveIsAllSteps loveIsAllSteps = new LoveIsAllSteps();
+    LoginSteps loginSteps = new LoginSteps();
+    MainMenuSteps mainMenuSteps = new MainMenuSteps();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void waitLoveIsAllLoad ()  {
+    public void waitLoveIsAllLoad () {
         loveIsAllSteps.checkLoveIsAllElements();
+        try {
+            mainMenuSteps.mainScreenLoad();
+        } catch (Exception e) {
+            loginSteps.validLogin();
+            mainMenuSteps.mainScreenLoad();
+        }
     }
-
     @Test
     public void openLoveIsAllSection() {
         loveIsAllSteps.goToLoveSection();

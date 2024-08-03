@@ -11,12 +11,15 @@ import org.junit.runner.RunWith;
 
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
+import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class NewsTest {
-    LoginSteps loginSteps = new LoginSteps();
+
     NewsSteps newsSteps = new NewsSteps();
+    MainMenuSteps mainMenuSteps = new MainMenuSteps();
+    LoginSteps loginSteps = new LoginSteps();
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
@@ -24,6 +27,12 @@ public class NewsTest {
     @Before
     public void newsScreenLoad()  {
         newsSteps.newsListLoad();
+        try {
+            mainMenuSteps.mainScreenLoad();
+        } catch (Exception e){
+            loginSteps.validLogin();
+            mainMenuSteps.mainScreenLoad();
+        }
     }
 
     @Test

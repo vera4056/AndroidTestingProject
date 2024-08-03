@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 
+import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -13,47 +14,42 @@ import org.junit.runner.RunWith;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LogOutSteps;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
-import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LogInLogOutTests {
-
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void waitForLoginFieldId ()  {
+    public void waitForLoginFieldId () {
         loginSteps.shouldWaitLoadLoginFieldID();
+        try {
+            loginSteps.isLogIn();
+        } catch (NoMatchingViewException e) {
 
-    }
-    String LOGIN = "login2";
-    String PASSWORD = "password2";
-
-    String LOGIN2 = "login3";
-    String PASSWORD2 = "password3";
-
-    LoginSteps loginSteps = new LoginSteps();
-    LogOutSteps logOutSteps = new LogOutSteps();
-    MainMenuSteps mainMenuSteps = new MainMenuSteps();
-
-    @Test
-    public void authorizationPageIsVisibleTest() {
-
+        logOutSteps.logOut();
         loginSteps.isLogIn();
     }
 
+    }
+
+    LoginSteps loginSteps = new LoginSteps();
+    LogOutSteps logOutSteps = new LogOutSteps();
+
+
+
     @Test
     public void logInWithValidDataTest() {
-        loginSteps.validLogin(LOGIN, PASSWORD);
+        loginSteps.validLogin();
 
     }
 
     @Test
     public void logInWithUnValidDataTest() {
-        loginSteps.invalidLoginOrPassword(LOGIN2, PASSWORD2);
+        loginSteps.invalidLoginOrPassword();
 
     }
 
@@ -65,7 +61,7 @@ public class LogInLogOutTests {
 
     @Test
     public void logOutTest() {
-        loginSteps.validLogin(LOGIN, PASSWORD);
+        loginSteps.validLogin();
         logOutSteps.logOut();
 
 

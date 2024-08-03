@@ -1,15 +1,22 @@
 package ru.iteco.fmhandroid.ui.steps;
 
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static ru.iteco.fmhandroid.ui.pageobjects.LogOut.authImage;
+import static ru.iteco.fmhandroid.ui.pageobjects.LogOut.checkLogOut;
+import static ru.iteco.fmhandroid.ui.pageobjects.LogOut.logOutButton;
+
+import androidx.test.espresso.ViewAssertion;
+
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.ui.pageobjects.LogOut;
 
 public class LogOutSteps {
-        LogOut logOut = new LogOut();
+
     public  void logOut() {
         Allure.step("Выход из учетной записи");
-        logOut.authButton();
-        logOut.logOutImage();
-        logOut.afterLogOutFrag();
+        authImage.perform(click());
+        logOutButton.perform(click());
+        checkLogOut.check((ViewAssertion) withText("Authorization"));
 
     }
 }

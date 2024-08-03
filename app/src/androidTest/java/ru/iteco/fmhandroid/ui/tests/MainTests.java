@@ -16,18 +16,25 @@ import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class MainTests {
-    LoginSteps loginSteps = new LoginSteps();
+
     MainMenuSteps mainMenuSteps = new MainMenuSteps();
+    LoginSteps loginSteps = new LoginSteps();
+
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void mainScreenLoad()  {
+    public void mainScreenLoad() {
         mainMenuSteps.mainScreenLoad();
+        try {
+            loginSteps.isLogIn();
+        } catch (Exception e) {
+            loginSteps.validLogin();
+            mainMenuSteps.mainScreenLoad();
+        }
     }
-
     @Test
     public void displayMainMenuTest() {
         mainMenuSteps.menuButtons();
@@ -36,6 +43,8 @@ public class MainTests {
     }
     @Test
     public void goToNewsPageTest() {
+
+
         mainMenuSteps.goToNews();
 
     }
