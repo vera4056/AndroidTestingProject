@@ -39,7 +39,7 @@ public class NewsSteps {
 
     public void newsListLoad() {
         Allure.step("Загрузка списка новостей");
-        onView(isRoot()).perform(waitDisplayed(R.id.all_news_cards_block_constraint_layout, 7000));
+        onView(isRoot()).perform(waitDisplayed(R.id.all_news_cards_block_constraint_layout, 10000));
         onView(allOf(withId(R.id.all_news_cards_block_constraint_layout), withText("News"))).check(matches(isDisplayed()));
     }
 

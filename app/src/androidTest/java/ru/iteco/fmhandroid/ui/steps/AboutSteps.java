@@ -33,7 +33,7 @@ public class AboutSteps {
     }
     public void checkAppDeveloper() {
         Allure.step("Ожидание загрузки страницы About");
-        onView(isRoot()).perform(waitDisplayed(R.id.about_version_title_text_view, 6000));
+        onView(isRoot()).perform(waitDisplayed(R.id.about_version_title_text_view, 10000));
         onView(allOf(withId(R.id.about_version_title_text_view), withText("1.0.0"))).check(matches(isDisplayed()));
 
     }

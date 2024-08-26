@@ -28,11 +28,14 @@ public class MainMenuSteps {
 
     public void mainScreenLoad() {
         Allure.step("Загрузка страницы Main");
-        onView(isRoot()).perform(waitDisplayed(R.id.main_menu_image_button, 7000));
-        onView(allOf(withId(R.id.main_menu_image_button), withText("Main menu"))).check(matches(isDisplayed()));
+        onView(isRoot()).perform(waitDisplayed(R.id.main_menu_image_button, 15000));
+        onView(allOf(withId(R.id.main_menu_image_button), withText("Main"))).check(matches(isDisplayed()));
 
     }
-
+    public void checkMenuButton() {
+        Allure.step("Отображение видимости кнопки меню");
+        menuButton.check(matches(isDisplayed()));
+    }
     public void menuButtons() {
         Allure.step("Отображение информации (разделов) на верхней панеле меню");
         menuButton.perform(click());

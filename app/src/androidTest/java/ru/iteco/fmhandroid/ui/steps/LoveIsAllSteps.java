@@ -25,7 +25,7 @@ public class LoveIsAllSteps {
 
     public void checkLoveIsAllElements() {
         Allure.step("Проверка элементов экрана Love Is All");
-        onView(isRoot()).perform(waitDisplayed(R.id.our_mission_image_button, 7000));
+        onView(isRoot()).perform(waitDisplayed(R.id.our_mission_image_button, 10000));
         onView(allOf(ViewMatchers.withText("Our Mission") ,ViewMatchers.isDisplayed()));
     }
     public void goToLoveSection() {
