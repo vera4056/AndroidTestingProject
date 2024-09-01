@@ -32,10 +32,12 @@ public class MainMenuSteps {
         onView(allOf(withId(R.id.main_menu_image_button), withText("Main"))).check(matches(isDisplayed()));
 
     }
+
     public void checkMenuButton() {
         Allure.step("Отображение видимости кнопки меню");
         menuButton.check(matches(isDisplayed()));
     }
+
     public void menuButtons() {
         Allure.step("Отображение информации (разделов) на верхней панеле меню");
         menuButton.perform(click());
@@ -48,7 +50,7 @@ public class MainMenuSteps {
 
     }
 
-    public void goToNews () {
+    public void goToNews() {
         Allure.step("Переход из раздела Main в раздел News");
         menuButton.perform(click());
         newsOnMain.perform(click());
@@ -56,7 +58,7 @@ public class MainMenuSteps {
 
     }
 
-    public void goToAbout () {
+    public void goToAbout() {
         Allure.step("Переход из раздела Main в раздел About");
         menuButton.perform(click());
         aboutTextButton.check(matches(isDisplayed()));

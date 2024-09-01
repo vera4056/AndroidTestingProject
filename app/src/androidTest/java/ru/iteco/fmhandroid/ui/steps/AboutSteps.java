@@ -24,20 +24,22 @@ import ru.iteco.fmhandroid.R;
 public class AboutSteps {
 
 
-    public void goToAboutSection () {
+    public void goToAboutSection() {
         Allure.step("Переход на страницу About");
         menuButton.perform(click());
         aboutTextButton.perform(click());
         versionInfo.check(matches(isDisplayed()));
 
     }
+
     public void checkAppDeveloper() {
         Allure.step("Ожидание загрузки страницы About");
         onView(isRoot()).perform(waitDisplayed(R.id.about_version_title_text_view, 10000));
         onView(allOf(withId(R.id.about_version_title_text_view), withText("1.0.0"))).check(matches(isDisplayed()));
 
     }
-    public void displayAboutSection () {
+
+    public void displayAboutSection() {
         Allure.step("Отображение страницы About с ссылками на Privacy Policy и Terms of use");
         menuButton.perform(click());
         aboutTextButton.perform(click());
@@ -46,7 +48,7 @@ public class AboutSteps {
         aboutCompany.check(matches(isDisplayed()));
     }
 
-    public void linkToPrivacyPolicy () {
+    public void linkToPrivacyPolicy() {
         Allure.step("Переход к Privacy Policy");
         menuButton.perform(click());
         aboutTextButton.perform(click());

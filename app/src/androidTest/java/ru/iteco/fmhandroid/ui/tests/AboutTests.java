@@ -28,25 +28,28 @@ public class AboutTests {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void aboutScreenLoad()  {
-        loginSteps.waitAuthorizationPage();
+    public void aboutScreenLoad() {
+
         try {
-            mainMenuSteps.mainScreenLoad();
-        } catch (Exception e) {
+            loginSteps.waitAuthorizationPage();
             loginSteps.validLogin();
+        } catch (Exception e) {
             mainMenuSteps.mainScreenLoad();
         }
 
     }
+
     @Test
     public void openAboutSectionTest() {
         aboutSteps.goToAboutSection();
 
     }
+
     @Test
-    public void displayAboutSectionsTest(){
+    public void displayAboutSectionsTest() {
         aboutSteps.displayAboutSection();
     }
+
     @Test
     public void goToPrivacyPolicyTest() {
         aboutSteps.linkToPrivacyPolicy();

@@ -13,6 +13,7 @@ import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.steps.LoginSteps;
 import ru.iteco.fmhandroid.ui.steps.MainMenuSteps;
 import ru.iteco.fmhandroid.ui.steps.NewsSteps;
+
 @LargeTest
 @RunWith(AllureAndroidJUnit4.class)
 public class NewsTest {
@@ -25,12 +26,12 @@ public class NewsTest {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void newsScreenLoad()  {
-        loginSteps.waitAuthorizationPage();
+    public void newsScreenLoad() {
+
         try {
-            mainMenuSteps.mainScreenLoad();
-        } catch (Exception e){
+            loginSteps.waitAuthorizationPage();
             loginSteps.validLogin();
+        } catch (Exception e) {
             mainMenuSteps.mainScreenLoad();
         }
     }
@@ -69,6 +70,7 @@ public class NewsTest {
     public void fillNewsTitleTest() {
         newsSteps.newsTitle();
     }
+
     @Test
     public void fillNewsDateTest() {
         newsSteps.newsDate();

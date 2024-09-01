@@ -14,7 +14,6 @@ public class LogOut {
 
     public static ViewInteraction authImage = onView(withId(R.id.authorization_image_button));
     public static ViewInteraction logOutButton = onView(allOf(withId(android.R.id.title), withText("Log out")));
-
     public static ViewInteraction checkLogOut = onView(withId(R.id.nav_host_fragment));
 
 

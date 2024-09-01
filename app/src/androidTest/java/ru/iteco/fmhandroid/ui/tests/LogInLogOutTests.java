@@ -26,13 +26,14 @@ public class LogInLogOutTests {
 
     @Before
     public void waitForLoginFieldId () {
-        loginSteps.waitAuthorizationPage();
+
         try {
-            loginSteps.isLogInElements();
+            loginSteps.waitAuthorizationPage();
         } catch (NoMatchingViewException e) {
 
             logOutSteps.logOut();
-            loginSteps.isLogInElements();
+            loginSteps.waitAuthorizationPage();
+
     }
 
     }
@@ -72,8 +73,7 @@ public class LogInLogOutTests {
     @Test
     public void logOutTest() {
         loginSteps.validLogin();
-        mainMenuSteps.mainScreenLoad();
-        /*logOutSteps.logOut();*/
+        logOutSteps.logOut();
 
 
     }

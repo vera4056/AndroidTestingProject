@@ -12,7 +12,6 @@ public class News {
     public static ViewInteraction newsOnMain = onView(withText("News"));
     public static ViewInteraction  allNewsLayout = onView(withId(R.id.all_news_cards_block_constraint_layout));
     public static ViewInteraction newsCardButton = onView(withId(R.id.news_item_material_card_view));
-
     public static ViewInteraction newsDescription = onView(withId(R.id.news_item_description_text_view));
     public static ViewInteraction allNewsCardsBlock = onView(withId(R.id.all_news_cards_block_constraint_layout));
     public static ViewInteraction editNewsButton = onView(withId(R.id.edit_news_material_button));

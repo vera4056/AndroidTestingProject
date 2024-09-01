@@ -27,20 +27,22 @@ public class MainTests {
 
     @Before
     public void mainScreenLoad() {
-        loginSteps.waitAuthorizationPage();
+
         try {
-            mainMenuSteps.mainScreenLoad();
-        } catch (Exception e) {
+            loginSteps.waitAuthorizationPage();
             loginSteps.validLogin();
+        } catch (Exception e) {
             mainMenuSteps.mainScreenLoad();
         }
     }
+
     @Test
     public void displayMainMenuTest() {
         mainMenuSteps.menuButtons();
 
 
     }
+
     @Test
     public void goToNewsPageTest() {
 

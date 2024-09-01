@@ -26,8 +26,9 @@ public class LoveIsAllSteps {
     public void checkLoveIsAllElements() {
         Allure.step("Проверка элементов экрана Love Is All");
         onView(isRoot()).perform(waitDisplayed(R.id.our_mission_image_button, 10000));
-        onView(allOf(ViewMatchers.withText("Our Mission") ,ViewMatchers.isDisplayed()));
+        onView(allOf(ViewMatchers.withText("Our Mission"), ViewMatchers.isDisplayed()));
     }
+
     public void goToLoveSection() {
         Allure.step("Переход на страницу Love is all");
         ourMissionButton.perform(click());
@@ -35,7 +36,8 @@ public class LoveIsAllSteps {
         missionBackgroundImage.check(matches(isDisplayed()));
         missionTitle.check(matches(isDisplayed()));
     }
-    public void quotesLoveIsAll () {
+
+    public void quotesLoveIsAll() {
         Allure.step("Наличие текста внутри цитаты в Love is all");
         ourMissionButton.perform(click());
         openCloseCardButton.perform(click());
@@ -44,6 +46,7 @@ public class LoveIsAllSteps {
         openCloseCardButton.perform(click());
 
     }
+
     public void backFromLoveToMenuSection() {
         Allure.step("Обратный переход со страницы Love is all в основное меню");
         ourMissionButton.perform(click());

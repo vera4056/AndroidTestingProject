@@ -26,15 +26,16 @@ public class LoveIsAllTest {
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
-    public void waitLoveIsAllLoad () {
-        loginSteps.waitAuthorizationPage();
+    public void waitLoveIsAllLoad() {
+
         try {
-            mainMenuSteps.mainScreenLoad();
-        } catch (Exception e) {
+            loginSteps.waitAuthorizationPage();
             loginSteps.validLogin();
+        } catch (Exception e) {
             mainMenuSteps.mainScreenLoad();
         }
     }
+
     @Test
     public void openLoveIsAllSection() {
         loveIsAllSteps.goToLoveSection();
@@ -53,3 +54,5 @@ public class LoveIsAllTest {
 
     }
 }
+
+

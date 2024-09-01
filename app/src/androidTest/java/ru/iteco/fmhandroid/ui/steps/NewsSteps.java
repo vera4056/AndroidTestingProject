@@ -88,27 +88,31 @@ public class NewsSteps {
         doesNotExist.check(matches(isDisplayed()));
 
     }
+
     public void newsCategory() {
         Allure.step("Заполнение поля Category");
         categoryText.perform(scrollTo(), click());
     }
+
     public void newsTitle() {
         Allure.step("Заполнение поля Title");
         newsTitle.perform((replaceText(changeTitle.toString())));
     }
 
-    public void newsDate(){
+    public void newsDate() {
         Allure.step("Выбор текущей даты для новости");
         newsDate.perform(click());
         confirmationButton.perform(click());
     }
+
     public void newsTime() {
         Allure.step("Выбор текущего времени для новости");
         newsTime.perform(scrollTo(), click());
         confirmationButton.perform(scrollTo(), click());
 
     }
-    public void newsDescription(){
+
+    public void newsDescription() {
         Allure.step("Заполнение поля Description");
         newsFillDescription.perform((replaceText(addDescription.toString())));
         saveButton.perform(click());
